@@ -2,14 +2,11 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
  
 public class Familytree implements Serializable{
     
     private static List<Human> familytree;
-    private long humanId;
 
     public Familytree(){
         familytree = new ArrayList<>();
@@ -17,7 +14,6 @@ public class Familytree implements Serializable{
     
     public void addHuman(Human human){
         familytree.add(human);
-        human.setId(++humanId);
 
         addToChild(human);
         addToParent(human);
@@ -50,14 +46,6 @@ public class Familytree implements Serializable{
             }
             else child.addMather(parent);
         }
-    }
-
-    public void sortByName(){
-        Collections.sort(familytree);
-    }
-
-    public void sortByDob(){
-        familytree.sort(new SortComparatorByDob());
     }
 
         @Override

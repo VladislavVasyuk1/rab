@@ -7,16 +7,11 @@ public class Main {
         Familytree tree = testTree();
         //Familytree tree = load(filePyt);
         System.out.println(tree);
-        tree.sortByName();
-        System.out.println(tree);
-        tree.sortByDob();
-        System.out.println(tree);
-
 
         save(tree, filePyt);
         
 }      
-        private static Familytree load(String filepyt) {
+private static Familytree load(String filepyt) {
             Writeble writeble = new FileHandler();
             return (Familytree) writeble.read(filepyt);
         }
@@ -32,9 +27,9 @@ public class Main {
 
         Familytree tree = new Familytree();
 
-        Human human2 = new Human("Инна","Васюк",LocalDate.of(1978, 6, 12), Gender.Female);
-
         Human human1 = new Human("Влад", "Васюк",LocalDate.of(1999, 10, 4) , Gender.Male);
+
+        Human human2 = new Human("Инна","Васюк",LocalDate.of(1978, 6, 12), Gender.Female);
 
         Human human3 = new Human("Сергей","Васюк",LocalDate.of(1975, 3, 30), Gender.Male);
 
@@ -42,8 +37,8 @@ public class Main {
         human2.addChild(human1);
         human1.addFather(human3);
         
-        tree.addHuman(human2);
         tree.addHuman(human1);
+        tree.addHuman(human2);
         tree.addHuman(human3);
 
         return tree;

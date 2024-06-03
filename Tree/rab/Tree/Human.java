@@ -4,7 +4,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements Serializable, Comparable<Human> {
+public class Human implements Serializable {
 
     private String name ;
     private String surname;
@@ -12,10 +12,9 @@ public class Human implements Serializable, Comparable<Human> {
     private List<Human> children;
     private Human father, mather;
     private Gender gender;
-    private long id;
 
 
-    public Human( String name, String surname, LocalDate dob, LocalDate dod, Human father, Human mather, Gender gender) {
+    public Human(String name, String surname, LocalDate dob, LocalDate dod, Human father, Human mather, Gender gender) {
         this.name = name;
         this.surname = surname;
         this.dob = dob;
@@ -52,11 +51,6 @@ public class Human implements Serializable, Comparable<Human> {
     public String getName() {
         return name;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getSurname() {
         return surname;
     }
@@ -96,7 +90,7 @@ public class Human implements Serializable, Comparable<Human> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-            sb.append(id + ". Имя: " + name);
+            sb.append("Имя: " + name);
             sb.append(", Фамилия: " + surname);
             sb.append(", пол: " + getGender());
             sb.append(", возраст: " + getAge() + " лет, ");
@@ -148,16 +142,6 @@ public class Human implements Serializable, Comparable<Human> {
         }
         else res.append("-");
         return res.toString();
-    }
-
-    @Override
-    public int compareTo(Human o) {
-        if(name.compareTo(o.name) == 0){
-            return surname.compareTo(o.surname);
-        }
-        else{
-            return name.compareTo(o.name);
-        }
     }
 
 

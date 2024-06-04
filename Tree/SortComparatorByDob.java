@@ -1,9 +1,9 @@
 import java.util.Comparator;
 
-public class SortComparatorByDob implements Comparator<Human> {
+public class SortComparatorByDob<T extends TreeOb<T>> implements Comparator<T> {
 
     @Override
-    public int compare(Human o1, Human o2) {
+    public int compare(T o1, T o2) {
         return o1.getDob().compareTo(o2.getDob());
     }
     

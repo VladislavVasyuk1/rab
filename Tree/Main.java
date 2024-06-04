@@ -16,7 +16,7 @@ public class Main {
         save(tree, filePyt);
         
 }      
-        private static Familytree load(String filepyt) {
+    private static Familytree load(String filepyt) {
             Writeble writeble = new FileHandler();
             return (Familytree) writeble.read(filepyt);
         }

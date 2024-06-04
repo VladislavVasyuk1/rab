@@ -4,7 +4,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements Serializable, Comparable<Human> {
+public class Human implements Serializable, TreeOb<Human>{
 
     private String name ;
     private String surname;
@@ -149,16 +149,5 @@ public class Human implements Serializable, Comparable<Human> {
         else res.append("-");
         return res.toString();
     }
-
-    @Override
-    public int compareTo(Human o) {
-        if(name.compareTo(o.name) == 0){
-            return surname.compareTo(o.surname);
-        }
-        else{
-            return name.compareTo(o.name);
-        }
-    }
-
 
 }

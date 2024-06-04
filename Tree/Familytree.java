@@ -2,39 +2,36 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
  
-public class Familytree implements Serializable{
+public class Familytree<T extends TreeOb<T>> implements Serializable{
     
-    private static List<Human> familytree;
+    private List<T> familytree;
     private long humanId;
 
     public Familytree(){
-        familytree = new ArrayList<>();
+        familytree = new ArrayList<T>();
     }
     
-    public void addHuman(Human human){
+    public void addHuman(T human){
         familytree.add(human);
         human.setId(++humanId);
-
         addToChild(human);
         addToParent(human);
     }
 
     
 
-    public Human findByHuman(String name, String surname){
-        for (Human human : familytree) {
-            if (human.getName().equalsIgnoreCase(name) || human.getName().equalsIgnoreCase(surname)){
+    public T findByHuman(String name, String surname){
+        for (T human : familytree) {
+            if (human.getName().equalsIgnoreCase(name) || human.getSurname().equalsIgnoreCase(surname)){
                 return human;
             }
         }
         return null;
     }
 
-    private void addToParent(Human child){
+    private void addToParent(T child){
         if (child.getFather() != null){
             child.getFather().addChild(child);
         }
@@ -43,8 +40,8 @@ public class Familytree implements Serializable{
         }
     }
 
-    private void addToChild(Human parent){
-        for (Human child : parent.getChildren()) {
+    private void addToChild(T parent){
+        for (T child : parent.getChildren()) {
             if (parent.getGender() == Gender.Male){
                 child.addFather(parent);
             }
@@ -53,11 +50,11 @@ public class Familytree implements Serializable{
     }
 
     public void sortByName(){
-        Collections.sort(familytree);
+        familytree.sort(new SortComparatorByName<>());
     }
 
     public void sortByDob(){
-        familytree.sort(new SortComparatorByDob());
+        familytree.sort(new SortComparatorByDob<>());
     }
 
         @Override
@@ -70,10 +67,12 @@ public class Familytree implements Serializable{
             sb.append("В древе находится ");
             sb.append(familytree.size() + " человек:");
             sb.append("\n");
-            for (Human people : familytree) {
+            for (T people : familytree) {
                 sb.append(people);
                 sb.append("\n");
             }
             return sb.toString();
-        }    
+        }
+
+        
 }

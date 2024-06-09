@@ -25,7 +25,7 @@ public class Presenter {
     }
 
     public void addChild(long parentId, long childId) {
-        familytree.addChild(parentId, childId);
+        service.addChild(parentId, childId);
     }
     public void getHumanListInfo() {
         String info = service.getInfo();
@@ -33,20 +33,20 @@ public class Presenter {
 }
 
     public void addFather(long fatherId, long childId) {
-        familytree.addFather(fatherId, childId);
+        service.addFather(fatherId, childId);
     }
 
     public void addMather(long matherId, long childId) {
-        familytree.addMather(matherId, childId);
+       service.addMather(matherId, childId);
     }
 
     public void sortByName() {
-        familytree.sortByName();
+        service.sortByName();
         getHumanListInfo();
     }
 
     public void sortByDayOfBerthday() {
-        familytree.sortByDob();
+       service.sortByDob();
         getHumanListInfo();
     }
 }
